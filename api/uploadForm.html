@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uploadForm</title>
+</head>
+<body>
+    <input type="file" name="filetoupload">
+    <button id="uploader_button">upload this file</button>
+    <script>
+        var file_input = document.getElementsByName("filetoupload")[0]
+        var uploader_button = document.getElementById("uploader_button")
+        
+            let formData = new FormData();           
+            formData.append("file", file_input.files[0]);
+            fetch('http://localhost:2000', {
+                method: "POST", 
+                body: formData
+            }).then(()=>{
+                alert('The file has been uploaded successfully.');
+            });    
+            
+1   </script>
+</body>
+</html>
