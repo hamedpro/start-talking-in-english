@@ -1,29 +1,17 @@
 import { useState} from 'react'
 import './App.css'
-
-function RootComponent(){
-  return(
-    <button onClick={()=>{window.setCurrentPath("/home")}}>go to home component</button>
-  )
-}
-function HomeComponent(){
-  return(
-    <button onClick={()=>{window.setCurrentPath("/")}}>go to root</button>
-  )
-}
+import MainHeader from './common_components/main_header/main_header'
+import RootComponent from './root_component/comp'
 function App(){
   const [currentPath , setCurrentPath] = useState('/')
-  //above state values pattern : { / for root } and { /home for home }
+  //above state values pattern : { "/" for root } and { "/home" for home }
   window.setCurrentPath = setCurrentPath
-  
-  switch(currentPath){
-    case "/" :
-      return RootComponent()
-    case "/home":
-      return HomeComponent()
-      break;
-  } 
- 
+  return(
+    <div>
+      {MainHeader()}
+      {currentPath == "/" ? RootComponent(): <div></div>}
+    </div>
+  )
 }
 
 export default App
