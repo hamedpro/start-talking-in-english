@@ -6,21 +6,11 @@
     <title>uploadForm</title>
 </head>
 <body>
-    <input type="file" name="filetoupload">
-    <button id="uploader_button">upload this file</button>
-    <script>
-        var file_input = document.getElementsByName("filetoupload")[0]
-        var uploader_button = document.getElementById("uploader_button")
-        
-            let formData = new FormData();           
-            formData.append("file", file_input.files[0]);
-            fetch('http://localhost:2000', {
-                method: "POST", 
-                body: formData
-            }).then(()=>{
-                alert('The file has been uploaded successfully.');
-            });    
-            
-1   </script>
+    <form action="http://localhost:2000/" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
+    <script>alert('file has changed')</script>
 </body>
 </html>
