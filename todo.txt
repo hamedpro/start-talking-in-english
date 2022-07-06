@@ -1,0 +1,3 @@
+handler routes like /podcasts from outside of app with node js and express js
+warn user if there is missing params in request to api 
+also check for types in api params
