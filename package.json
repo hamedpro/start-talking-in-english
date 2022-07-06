@@ -5,13 +5,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev_db_api": "npx nodemon ./api/database_api.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "formidable": "^2.0.1",
     "mysql": "^2.18.1",
+    "nodemon": "^2.0.19",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

@@ -58,18 +58,37 @@ app.all('/',(req,res)=>{
                 })
                 break;
             case 'verify_user_password':
-                var correct_password = "" // get from db
-                var verified = (correct_password == params.password ? true : false )
-                res.send(JSON.stringify({
-                    verified
-                }))
-            case 'check_username_availibility':
+                connection.query(`select password from users where username = '${params.username}'`,(error,result)=>{
+                    if(error){
+                        res.json({
+                            error
+                        })
+                    }
+                    var correct_password = result[0]['password']
+                    var verified = ((correct_password == params.password) ? true : false )
+                    res.send(JSON.stringify({
+                        result : verified
+                    }))
+                })
+                
+            case 'is_username_available':
+                connection.query(`select username from users where username = '${params.username}'`,(error,result)=>{
+                    if(error){
+                        res.json({
+                            error
+                        })
+                    }else{
+                        res.json({
+                            result : (result.length == 0 ? true : false)
+                        })
+                    }
+                })
             break;
+
         }
     }
     
 })
-
 app.listen(4000,()=>{
     console.log("database api is listening on port 4000")
 })
