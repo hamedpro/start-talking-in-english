@@ -1,0 +1,14 @@
+#main_header_component{
+    height: 40px;
+    width: 90%;
+}
+#main_header_component #profile_button{
+    width:40px;
+    height: 40px;
+    background-color: lightgray;
+    border-radius: 100%;
+    transition: 200ms;
+}
+#main_header_component #profile_button:hover{
+    background-color: gray;
+}

@@ -1,0 +1,9 @@
+/
+/info
+/support
+/podcasts
+/podcast (it has payload)
+/support
+/new_podcast
+/login
+/register
