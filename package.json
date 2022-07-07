@@ -15,7 +15,8 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.19",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

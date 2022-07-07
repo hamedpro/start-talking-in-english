@@ -9,23 +9,23 @@ import Podcasts from './components/podcasts/component'
 import NewPodcast from './components/new_podcast/component'
 import Login from './components/login/component'
 import Register from "./components/register/component"
+import {BrowserRouter,Route,Routes} from "react-router-dom"
 
 function App(){
-  const [currentPath , setCurrentPath] = useState('/')
-  //above state values pattern : { "/" for root } and { "/home" for home }
-  window.setCurrentPath = setCurrentPath
   return(
-    <div>
+    <BrowserRouter>
       <MainHeader />
-      {currentPath == "/" ? RootComponent(): <div></div>}
-      {currentPath == "/info" ? Info(): <div></div>}
-      {currentPath == "/support" ? Support(): <div></div>}
-      {currentPath == "/podcasts" ? Podcasts(): <div></div>}
-      {currentPath == "/podcast" ? Podcast(): <div></div>}
-      {currentPath == "/new_podcast" ? NewPodcast(): <div></div>}
-      {currentPath == "/login" ? Login(): <div></div>}
-      {currentPath == "/register" ? Register(): <div></div>}
-    </div>
+      <Routes>
+        <Route path="/" element={<RootComponent />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/podcasts" element={<Podcasts />} />
+        <Route path="/podcast" element={<Podcast />} />
+        <Route path="/new_podcast" element={<NewPodcast />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -1,0 +1,12 @@
+name_of_task - required params - output
+register_new_user - username and password
+is_username_available - username 
+verify_user_password - username and password 
+upload_new_podcast - username and name and description - id_of_inserted_row 
+//add likes_count and views_count and ... later
+write_or_update_podcast_text - podcast_row_id and new_text
+new_support_ticket - username and text - id_of_inserted_row
+toggle_support_ticket_proceeding_status - id_of_row - result
+get_podcast_text
+get_podcast_data
+
