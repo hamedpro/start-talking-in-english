@@ -1,1 +1,2 @@
 dont forget to avoid commit changes when there is your passwords written in config files 
+take care to send text of padcasts just with post method
