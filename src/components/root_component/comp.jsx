@@ -32,6 +32,16 @@ export default function RootComponent(){
             title:'register',
             text:'if you have not an account in our platform you can register here for free',
             path : "/register"
+        },{
+            index:6,
+            title:'support tickets',
+            text:'if you be an administrator you can see and manage full list of submited support tickets here',
+            path : "/support_tickets"
+        },{
+            index:7,
+            title:'new support ticket',
+            text:'this is where users can contact website administrators directly about probable problems or ...',
+            path : "/new_support_ticket"
         }
     ]
     return(

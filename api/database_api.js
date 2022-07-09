@@ -132,7 +132,6 @@ app.all('/',(req,res)=>{
             })
             break;
         case 'set_podcast_text': 
-            console.log('llll')
             var dir = __dirname + '/uploaded_podcasts_texts'
             if(!fs.existsSync(dir)){
                 fs.mkdirSync(dir)
@@ -146,24 +145,40 @@ app.all('/',(req,res)=>{
             })
             break;
         case 'new_support_ticket':
-            connection.query(`insert into support_tickets (username,text) values ('${params.username}','${params.text}'))`,(error)=>{
+            //params => username , text
+            connection.query(`insert into support_tickets (username,text) values ('${params.username}','${params.text}')`,(error)=>{
                 if(error){
-                    res.json({
-                        error
-                    })
-                }else{
-                    res.json({})
+                    response_manager_1.add_error(error)
                 }
+                response_manager_1.set_result({result:true})
+                response_manager_1.send()
+            })
+            break;
+        case 'get_support_tickets':
+            //params => support_ticket_id
+            connection.query(`select * from support_tickets`,(error,results)=>{
+                if(error){
+                    response_manager_1.add_error(error)
+                }
+                response_manager_1.set_result(results)
+                response_manager_1.send()
             })
             break;
         case 'toggle_support_ticket_proceeding_status':
-            connection.query(`update support_tickets set is_proceed = 'true' where id = ${Number(params.support_ticket_id)}`,error=>{
-                if(error){
-                    res.json({error})
-                }else{
-                    res.json({})
-                }
+            connection.query(`select is_proceed from support_tickets where id = ${Number(params.support_ticket_id)}`,(error,results)=>{
+                var current_proceeding_status = results[0]['is_proceed'] == "true" ? true : false
+                connection.query(`update support_tickets set is_proceed = '${current_proceeding_status ? "false":"true"}' where id = ${Number(params.support_ticket_id)}`,error=>{
+                    if(error){
+                        response_manager_1.add_error(error)
+                    }else{
+                        response_manager_1.set_result(true)
+                    }
+
+                    response_manager_1.send()
+                })
+                
             })
+            
             break;
         case 'get_podcast_data' :
             var podcast_text_file_path = './uploaded_podcasts_texts/'+params.podcast_row_id+".txt"
