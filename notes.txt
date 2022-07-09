@@ -1,2 +1,3 @@
 dont forget to avoid commit changes when there is your passwords written in config files 
-take care to send text of padcasts just with post method
+take care to send text of podcasts just with post method
+text of podcasts are stored in txt file and their paths are related to its podcast_row_id and also this is true about their audio file

@@ -1,0 +1,5 @@
+#new_podcast_page .box input{
+    display: block;
+    border-radius: 5px ;
+    margin-top:3px;
+}

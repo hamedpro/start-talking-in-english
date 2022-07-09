@@ -20,7 +20,7 @@ function App(){
         <Route path="/info" element={<Info />} />
         <Route path="/support" element={<Support />} />
         <Route path="/podcasts" element={<Podcasts />} />
-        <Route path="/podcast" element={<Podcast />} />
+        <Route path="/podcast/:podcast_id" element={<Podcast />} />
         <Route path="/new_podcast" element={<NewPodcast />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

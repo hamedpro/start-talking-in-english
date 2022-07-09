@@ -2,3 +2,5 @@ handler routes like /podcasts from outside of app with node js and express js
 warn user if there is missing params in request to api 
 also check for types in api params
 custom_ajax.js make sure about if it handles everything correct or not (i think it wont)
+care about todo s which are inside code => for example i have used temp dir of windows in codes of uploading file
+but maybe this project be published on a linux server (most probably)

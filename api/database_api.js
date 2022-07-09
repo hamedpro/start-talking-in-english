@@ -13,6 +13,9 @@ class response_manager{
     constructor(response){
         this.response = response
     }
+    append_to_response = data =>{
+        this.response.write(data)
+    }
     add_error = error => {
         this.errors.push(error)
     }
@@ -75,6 +78,7 @@ connection.query(config_tables_mysql_query,(error)=>{
         console.log(error)
     }
 })
+
 app.all('/',(req,res)=>{
     var response_manager_1 = new response_manager(res)
     var params = req.query;
@@ -127,17 +131,18 @@ app.all('/',(req,res)=>{
                 })
             })
             break;
-        case 'write_or_update_podcast_text': 
-            fs.mkdirSync('./uploaded_podcasts_texts')
-            fs.writeFileSync('./uploaded_podcasts_texts/' + params.podcast_row_id + ".txt",params.text,(error)=>{
+        case 'set_podcast_text': 
+            console.log('llll')
+            var dir = __dirname + '/uploaded_podcasts_texts'
+            if(!fs.existsSync(dir)){
+                fs.mkdirSync(dir)
+            }
+            fs.writeFileSync(dir +`/`+ params.podcast_row_id + ".txt",params.text,(error)=>{
                 if(error){
-                    res.json({
-                        error
-                    })
-                }else{
-                    res.json({})
+                    (response_manager_1.add_error(error))
                 }
-                
+                response_manager_1.set_result({})
+                response_manager_1.send()
             })
             break;
         case 'new_support_ticket':
@@ -161,22 +166,35 @@ app.all('/',(req,res)=>{
             })
             break;
         case 'get_podcast_data' :
-            var file_content = fs.readFileSync('./uploaded_podcasts_texts/'+params.podcast_row_id+".txt")
-            connection.query(`select * from podcasts where id=${params.podcast_row_id}`,(error,result)=>{
-                if(error){
-                    res.json({error})
-                }else{
-                    res.json({
-                        podcast_row_id,
-                        text : file_content,
-                        ...result
-                    })
+            var podcast_text_file_path = './uploaded_podcasts_texts/'+params.podcast_row_id+".txt"
+            var file_content = (fs.existsSync(podcast_text_file_path) ?  fs.readFileSync() : "")
+            connection.query(`select * from podcasts where id=${params.podcast_row_id}`,(error,results)=>{
+                podcast_data = {
+                    podcast_row_id : params.podcast_row_id,
+                    text : file_content
                 }
-            })
-            res.json({
-                result:file_content
+                for(key in results[0]){
+                    podcast_data[key] = results[0][key]
+                }
+                if(error){(response_manager_1.add_error(error))}
+                response_manager_1.set_result(podcast_data)
+                response_manager_1.send()
             })
             break;
+        
+        case "get_ids_of_podcasts" :
+            connection.query(`select id from podcasts`,(error,results)=>{
+                var ids = []
+                results.forEach(result=>{
+                    ids.push(result.id)
+                })
+                if(error){
+                    response_manager_1.add_error(error)
+                }
+                response_manager_1.set_result(ids)
+                response_manager_1.send()
+            })
+            
     }
     
 })
