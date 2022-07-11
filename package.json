@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "dev_db_api": "npx nodemon ./api/database_api.js"
+    "preview": "vite preview", 
+    "dev_db_api": "npx nodemon ./api/database_api.js",
+    "start" : "vite & npx nodemon ./api/database_api.js & npx nodemon ./api/fileUploader.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

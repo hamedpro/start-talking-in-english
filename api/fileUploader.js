@@ -6,15 +6,12 @@ http.createServer(function(req, res) {
   if (req.url === '/upload' && req.method === 'POST') {
     // parse a file upload
     var form = new multiparty.Form();
-
     form.parse(req, function(err, fields, files) {
       res.writeHead(200, { 'content-type': 'text/plain' });
-      res.write('received upload:\n\n');
-      console.log(JSON.stringify(files))
-      fs.copyFileSync(files.upload[0]["path"].replaceAll(`\\`,`/`),__dirname)
+      res.write(JSON.stringify(files))
+      fs.copyFileSync(files.upload[0]["path"],`./` + files.upload[0].originalFilename)
       res.end();
     });
-
     return;
   }
 
