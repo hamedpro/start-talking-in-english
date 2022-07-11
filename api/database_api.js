@@ -41,8 +41,17 @@ connection.query("create database if not exists start_talking_in_english;",(erro
         console.log('there was an error in creating database')
         console.log(error)
     }
-    
 })
+// once after i did dump the database when recreating it i faced this error below 
+// but prolem was solved when i created database itself from mysql cli and then i did re-run the code 
+/* {
+    code: 'ER_BAD_DB_ERROR',
+    errno: 1049,
+    sqlMessage: "Unknown database 'start_talking_in_english'",
+    sqlState: '42000',
+    index: 0,
+    sql: "insert into podcasts (username,name,description) values ('hamedpro','1st podcast name','1st podcast desc')"
+  } */
 connection.end()
 connection = mysql.createConnection({
     user:'root',
@@ -132,15 +141,16 @@ app.all('/',(req,res)=>{
             })
             break;
         case 'set_podcast_text': 
-            var dir = __dirname + '/uploaded_podcasts_texts'
+            var dir = __dirname + '/uploaded_files'
             if(!fs.existsSync(dir)){
                 fs.mkdirSync(dir)
             }
-            fs.writeFileSync(dir +`/`+ params.podcast_row_id + ".txt",params.text,(error)=>{
+            fs.writeFile(dir +`/`+ params.podcast_row_id + ".txt",params.text,(error)=>{
                 if(error){
                     (response_manager_1.add_error(error))
+                }else{
+                    response_manager_1.set_result({})
                 }
-                response_manager_1.set_result({})
                 response_manager_1.send()
             })
             break;
@@ -181,8 +191,8 @@ app.all('/',(req,res)=>{
             
             break;
         case 'get_podcast_data' :
-            var podcast_text_file_path = './uploaded_podcasts_texts/'+params.podcast_row_id+".txt"
-            var file_content = (fs.existsSync(podcast_text_file_path) ?  fs.readFileSync() : "")
+            var podcast_text_file_path = __dirname + '/uploaded_files/'+params.podcast_row_id+".txt"
+            var file_content = (fs.existsSync(podcast_text_file_path) ?  fs.readFileSync(podcast_text_file_path,{encoding:'utf8'}) : "")
             connection.query(`select * from podcasts where id=${params.podcast_row_id}`,(error,results)=>{
                 podcast_data = {
                     podcast_row_id : params.podcast_row_id,

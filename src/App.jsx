@@ -11,6 +11,7 @@ import Register from "./components/register/component"
 import SupportTickets from './components/support_tickets/component.jsx'
 import SupportTicket from "./components/support_ticket/comp.jsx"
 import NewSupportTicket from "./components/new_support_ticket/comp.jsx"
+import UploadPodcastFile from "./components/upload_podcast_file/comp.jsx"
 import {BrowserRouter,Route,Routes} from "react-router-dom"
 
 function App(){
@@ -28,6 +29,7 @@ function App(){
         <Route path="/support_tickets" element={<SupportTickets />} />
         <Route path="/support_ticket/:support_ticket_id" element={<SupportTicket />} />
         <Route path="/new_support_ticket" element={<NewSupportTicket />} />
+        <Route path="/upload_podcast_file/:podcast_id" element={<UploadPodcastFile />} />
 
 
       </Routes>

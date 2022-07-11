@@ -1,6 +1,9 @@
 import "./styles.css"
 import {customAjax} from "../../custom_ajax"
+import { useNavigate } from "react-router-dom"
+
 export default function NewPodcast(){
+    var nav = useNavigate()
     function save_new_podcast(){
         customAjax({
             params: {
@@ -18,8 +21,9 @@ export default function NewPodcast(){
                     text : document.getElementById('text_of_podcast_textarea').value 
                 }, 
                 method: "POST" // becuse its possible for podcast's text to pass valid length which GET request can handle 
-            }).then(res=>res.json()).then(response=>{
-                console.log(response)
+            }).then(response2=>{
+                console.log(response2)
+                nav("/upload_podcast_file/"+response.id_of_inserted_row.id)
             })
         })
         
@@ -49,11 +53,9 @@ export default function NewPodcast(){
                 id="text_of_podcast_textarea" placeholder="enter podcast's text here ... ">
                 </textarea>
             </div>
-            <div className="mx-auto w-80 mt-4">
-                <button className="bg-blue-400 p-1 rounded text-yellow-100">go to "upload podcast's file" page </button>
-            </div>
+            
 
-            <button type="button" className="w-80 mx-auto block bg-green-500 text-white rounded mt-5 py-2 text-lg" onClick={save_new_podcast}>submit all changes </button>
+            <button type="button" className="w-80 mx-auto block bg-green-500 text-white rounded mt-5 py-2 text-lg" onClick={save_new_podcast}>upload podcast's file</button>
 
         </div>
         

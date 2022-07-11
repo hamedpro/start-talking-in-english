@@ -2,3 +2,5 @@ dont forget to avoid commit changes when there is your passwords written in conf
 take care to send text of podcasts just with post method
 text of podcasts are stored in txt file and their paths are related to its podcast_row_id and also this is true about their audio file
 from now on we are just configuring project scripts and ... in a that we can not gurantee that this program scripts and ... will work properly on windows
+take care about using single quote in texts which can be used inside mysql queries and also take care about double quotes
+may it be nessesary to run node js servers in sudo mode even in production mode becuse we use fs.copyfile and ... from tmp and ... (or just change file permitions )
