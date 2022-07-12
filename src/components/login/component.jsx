@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import {customAjax} from "../../custom_ajax"
+import {customAjax} from "../../../common-codes/custom_ajax/dev/custom_ajax"
 
 export default function Login(){
     function login(nav){

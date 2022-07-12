@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import {customAjax} from "../../custom_ajax"
+import {customAjax} from "../../../common-codes/custom_ajax/dev/custom_ajax"
 export default function Podcast(){
     var podcast_id = useParams().podcast_id
     const [podcast_data,set_podcast_data] = useState({})
