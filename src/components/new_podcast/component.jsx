@@ -23,11 +23,18 @@ export default function NewPodcast(){
                 method: "POST" // becuse its possible for podcast's text to pass valid length which GET request can handle 
             }).then(response2=>{
                 console.log(response2)
-                nav("/upload_podcast_file/"+response.id_of_inserted_row.id)
+                var my_form = new FormData()
+                var input_el_file_0 = document.getElementById('files_input').files[0]
+                my_form.append("file",input_el_file_0)
+                fetch('http://localhost:8000/upload?podcast_id='+ inserted_podcast_id,{
+                    body:my_form,
+                    method:"POST"
+                })
             })
         })
         
     }
+    
     return(
         <div id="new_podcast_page">
             <div className="mx-auto w-80 rounded">
@@ -54,6 +61,8 @@ export default function NewPodcast(){
                 </textarea>
             </div>
             
+            <input type="file" id="files_input" />
+            <button id="upload_button">upload the file</button>
 
             <button type="button" className="w-80 mx-auto block bg-green-500 text-white rounded mt-5 py-2 text-lg" onClick={save_new_podcast}>upload podcast's file</button>
 

@@ -12,11 +12,12 @@ app.post('/upload',(req,res)=>{
     // parse a file upload
     var form = new multiparty.Form();
     form.parse(req, function(err, fields, files) {
-      var dir = "./api/uploaded_files/"
+      console.log(JSON.stringify(files))
+      var dir = __dirname + "/uploaded_files/"
       if(!fs.existsSync(dir)){
         fs.mkdirSync(dir)
       }
-      fs.copyFileSync(files.upload[0]["path"], dir + req.query.podcast_id + ".mp3")
+      fs.copyFileSync(files.file[0]["path"], dir + req.query.podcast_id + ".mp3")
       //above line's paths are relative to path of stating server so take care 
       res.writeHead(200, { 'content-type': 'text/html' });
       res.write(
