@@ -1,4 +1,4 @@
-import { customAjax } from "../../../common-codes/custom_ajax/dev/custom_ajax"
+import { customAjax } from "../../../common-codes/custom_api_system/dev/custom_ajax"
 export default function NewSupportTicket(){
     function submit_support_ticket(){
         var username = window.localStorage.getItem('username')

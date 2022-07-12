@@ -1,5 +1,5 @@
 import "./styles.css"
-import { object_to_url ,customAjax} from "../../../common-codes/custom_ajax/dev/custom_ajax"
+import { object_to_url ,customAjax} from "../../../common-codes/custom_api_system/dev/custom_ajax"
 export default function Register(){
     
     var register_new_user_button = () =>{

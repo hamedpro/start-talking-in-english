@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import {customAjax} from "../../../common-codes/custom_ajax/dev/custom_ajax"
+import {customAjax} from "../../../common-codes/custom_api_system/dev/custom_ajax"
 export default function SupportTicket(){
     var params = useParams()
     var support_ticket_id = params.support_ticket_id

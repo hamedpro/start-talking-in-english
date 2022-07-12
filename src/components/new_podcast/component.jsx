@@ -1,5 +1,5 @@
 import "./styles.css"
-import {customAjax} from "../../../common-codes/custom_ajax/dev/custom_ajax"
+import {customAjax} from "../../../common-codes/custom_api_system/dev/custom_ajax"
 import { useNavigate } from "react-router-dom"
 
 export default function NewPodcast(){

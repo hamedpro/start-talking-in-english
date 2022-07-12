@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import ListItem from "../../common_components/ListItem/comp"
-import { customAjax } from "../../../common-codes/custom_ajax/dev/custom_ajax"
+import { customAjax } from "../../../common-codes/custom_api_system/dev/custom_ajax"
 
 export default function SupportTickets(){
     const [support_tickets,set_support_tickets] = useState([])
